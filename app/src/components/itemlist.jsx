@@ -8,9 +8,9 @@ const itemlist = ({ items }) => {
         {items.map((item) => (
             <li key={item.id}>
                 <link to={`/item/${item.id}`}>
-                <h3>{item.name}</h3>
+                <h3>{item.title}</h3>
                 <p>${item.price}</p>
-                <p>{item.category}</p>
+                <p>{item.categoryId}</p>
                 </link>
             </li>
             ))}
