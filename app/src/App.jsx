@@ -1,22 +1,23 @@
-import {Routes, Route} from "react-router-dom";
-import itemlistcontainer from "./components/itemlistcontainer";
-import itemdetailcontainer from "./components/itemdetailcontainer";
-import navbar from "./components/navbar";
-import Cartprovider from "./context/cartprovider";
-import Checkout from "./components/checkout";
+import { Routes, Route } from "react-router-dom";
+import ItemListContainer from "./components/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer";
+import Navbar from "./components/NavBar";
+import CartProvider from "./context/CartProvider";
+import Checkout from "./components/Checkout";
 
 function App() {
   return (
-    <Cartprovider>
-      <navbar />
+    <CartProvider>
+      <Navbar />
 
       <Routes>
-        <Route path="/" element={<itemlistcontainer/>} />
-        <Route  path="/category/:categoryId"element={ <itemlistcontainer/>}/>
-        <Route path="/item/:id" element={<itemdetailcontainer />} /> 
-        <Route path="/checkout" element={<checkout/>} />
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
-    </Cartprovider>
+    </CartProvider>
   );
 }
-export default App
+
+export default App;

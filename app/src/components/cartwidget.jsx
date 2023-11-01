@@ -1,12 +1,16 @@
-import { useContext } from "react";
-import cartcontext from "../context/cartcontext";
-import { getcartquantity } from "./utils";
+import React, { useContext } from "react";
+import CartContext from "../context/Cartcontext";
+import { getCartQuantity } from "./utils";
 
-const cartwidget = () => {
-    const {cart} = useContext(cartcontext)
+const CartWidget = () => {
+  const { cart } = useContext(CartContext);
+  const quantity = getCartQuantity(cart);
 
-    const quantity = getcartquantity(cart)
+  return (
+    <div>
+      {quantity ? `Cart Widget ${quantity}` : null}
+    </div>
+  );
+};
 
-    return <div> cartwidget {!!quantity && quantity}</div>
-    };
-    export default cartwidget;
+export default CartWidget;

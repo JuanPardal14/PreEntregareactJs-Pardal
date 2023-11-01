@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
-
-const ItemDetail = ({ item, addItem }) => {
+const ItemDetail = ({ item, addItem, isLoading }) => {
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
@@ -25,6 +24,7 @@ const ItemDetail = ({ item, addItem }) => {
 ItemDetail.propTypes = {
   item: PropTypes.object,
   addItem: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 
 export default ItemDetail;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CartContext from "./cartcontext";
+import CartContext from "./Cartcontext";
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
@@ -20,7 +20,7 @@ const CartProvider = ({ children }) => {
             quantity: item.quantity + quantity,
           };
         }
-        return item; // Cambiado ':' a ','
+        return item;
       });
       setCart(newCart);
     } else {

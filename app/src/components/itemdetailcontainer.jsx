@@ -1,24 +1,25 @@
-import { useState,useEffect, useContext } from "react";
-import {useParams} from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { getProduct } from "../services";
-import itemdetail from "./itemdetail";
-import cartcontext from "../context/cartcontext";
+import ItemDetail from "./ItemDetail"; 
+import CartContext from "../context/Cartcontext";
 
-const itemdetailcontainer = () => {
-    const [item,setItem] = useState(null);
-    const {id} = useParams();
+const ItemDetailContainer = () => { 
+  const [item, setItem] = useState(null);
+  const { id } = useParams();
+  const { addItem } = useContext(CartContext); 
 
-    const {addItem} = useContext(cartcontext);
-    
-    useEffect (() => {
-        getProduct(id).then((response) =>{
-            setItem(response)
-        })
-        .catch(() => {
-            setItem(null);
-        });
-    }, [id]);    
-    return <itemdetail item={item} addItem={addItem} />;
+  useEffect(() => {
+    getProduct(id)
+      .then((response) => {
+        setItem(response);
+      })
+      .catch(() => {
+        setItem(null);
+      });
+  }, [id]);
+
+  return <ItemDetail item={item} addItem={addItem} />;
 };
 
-    export default itemdetailcontainer;
+export default ItemDetailContainer;

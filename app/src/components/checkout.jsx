@@ -1,24 +1,24 @@
-import { usecontext, usestate } from "react";
-import CartContext from "../context/cartcontext";
+import React, { useContext, useState } from "react"; 
+import CartContext from "../context/Cartcontext";
 import { serverTimestamp } from "firebase/firestore";
-import { getcarttotal, mapcarttoorderitems } from "./utils";
+import { getCartTotal, mapCartToOrderItems } from "./utils"; 
 import { createOrder } from "../services";
 
-const checkout = () => {
-  const [orderId, setOrderId] = usestate(null);
-  const [isLoading, setIsLoading] = usestate(false);
-  const { cart, clear } = usecontext(CartContext);
+const Checkout = () => { 
+  const [orderId, setOrderId] = useState(null); 
+  const [isLoading, setIsLoading] = useState(false); 
+  const { cart, clear } = useContext(CartContext);
 
-  const total = getcarttotal(cart);
+  const total = getCartTotal(cart); 
 
-  const handlecheckout = () => {
+  const handleCheckout = () => { 
     const order = {
       buyer: {
         name: "Juan",
         phone: "424324",
         email: "juanito@gmail.com",
       },
-      items: mapcarttoorderitems(cart),
+      items: mapCartToOrderItems(cart), 
       total,
       date: serverTimestamp(),
     };
@@ -33,7 +33,7 @@ const checkout = () => {
 
   return (
     <div>
-      <h1>checkout</h1>
+      <h1>Checkout</h1>
 
       <h2>Resumen de la compra</h2>
 
@@ -57,7 +57,7 @@ const checkout = () => {
 
           <p>Total de la compra: {total}</p>
 
-          <button onClick={handlecheckout}>Finalizar compra</button>
+          <button onClick={handleCheckout}>Finalizar compra</button> 
 
           {isLoading && <p>Procesando compra...</p>}
         </>
@@ -66,4 +66,4 @@ const checkout = () => {
   );
 };
 
-export default checkout;
+export default Checkout;

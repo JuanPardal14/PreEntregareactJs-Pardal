@@ -1,25 +1,28 @@
 import React from "react";
-import {link} from "react-router-dom"; 
+import { Link } from "react-router-dom"; 
+import PropTypes from "prop-types"; 
 
-const itemlist = ({ items }) => {
-    return <div>
-    <h1>itemlist</h1>
-    <ul>
+const ItemList = ({ items }) { 
+  return (
+    <div>
+      <h1>ItemList</h1> 
+      <ul>
         {items.map((item) => (
-            <li key={item.id}>
-                <link to={`/item/${item.id}`}>
-                <h3>{item.title}</h3>
-                <p>${item.price}</p>
-                <p>{item.categoryId}</p>
-                </link>
-            </li>
-            ))}
-        </ul>
+          <li key={item.id}>
+            <Link to={`/item/${item.id}`}> 
+              <h3>{item.title}</h3>
+              <p>${item.price}</p>
+              <p>{item.categoryId}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
+  );
 };
 
-itemlist.propTypes = {
-    items: propTypes.array.isRequired,
+ItemList.propTypes = {
+  items: PropTypes.array.isRequired, 
 };
 
-export default itemlist;
+export default ItemList;
